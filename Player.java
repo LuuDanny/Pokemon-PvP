@@ -18,8 +18,8 @@ public class Player {
    */
    public Player(String newName, Pokemon newPoke) {
        this.name = newName;
-       this.poke = newPoke;
        this.energy = energy;
+       this.poke = newPoke;
    }
    
    public String toString() {
@@ -68,11 +68,9 @@ public class Player {
    
    /**
    * Gives the player one energy when they pass.
-   * @return int the Player's new energy
    */
-   public int passTurn(){
-      this.energy = energy++;
-      return this.energy;
+   public void passTurn(){
+      this.energy = energy + 1;
    }
 
    //============= getMethod ==================
@@ -107,7 +105,5 @@ public class Player {
    public int getHp(){
       return this.poke.getHP();
    }
-   
-
 
 }
