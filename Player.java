@@ -22,15 +22,46 @@ public class Player {
        this.energy = energy;
    }
    
+   public String toString() {
+      String s = "";
+      s = "Player: " + this.name;
+      s = s + "/nEnergy: " + this.energy;
+      s = s + "/nPokemon: /n" + this.poke;
+      return s;
+   }
+   
+   public String status() {
+      String s = "";
+      s = "Your Hp: " + getHp();
+      s = "/nYour attack energy: " + getEnergy();
+      return s;
+   }
+   
    /**
-   * The player performs a fast attack
-   * @param 
-   * @return 
+   * The player performs a fast attack on opponent.
+   * @param The opponent player
+   * @return Player The opponent player with their updated hp
    */
    public Player fastAttack(Player opponent){
       String s = "";
       Player p = opponent;
+      
       s = this.poke.performFastAttack(p.getPoke());
+      System.out.println(s);
+      return p;
+   }
+   
+   /**
+   * The player performs a special attack on opponent.
+   * @param The opponent player
+   * @return Player The opponent player with their updated hp
+   */
+   public Player specialAttack(Player opponent){
+      String s = "";
+      Player p = opponent;
+      
+      this.energy = energy - 3;
+      s = this.poke.performSpecialAttack(p.getPoke());
       System.out.println(s);
       return p;
    }
@@ -43,9 +74,6 @@ public class Player {
       this.energy = energy++;
       return this.energy;
    }
-   
-   
-
 
    //============= getMethod ==================
    /**
