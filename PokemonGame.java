@@ -55,7 +55,7 @@ public class PokemonGame {
          playerTwo = p1;
       } 
       
-      //Assign player's positionn as their name if their name is empty.
+      //Assign player's position as their name if their name is empty.
       if (playerOne.getName().equals("")) {
          playerOne.setName("Player One");
       }
@@ -64,7 +64,8 @@ public class PokemonGame {
       }
       
       System.out.println("\n===============================");
-      System.out.println(playerOne.getName() + " VS " + playerTwo.getName());
+      System.out.println(playerOne.getName() + "(" + playerOne.getPoke().getSpecies() + ")"
+            + " VS " + playerTwo.getName() + "(" + playerTwo.getPoke().getSpecies() + ")");
       System.out.println("===============================");
       
       // Battle Loop
@@ -210,7 +211,8 @@ public class PokemonGame {
                opponent = attacker.fastAttack(opponent);
                currentHp = opponent.getHp();
                damageTaken = previousHp - currentHp;
-               System.out.println(opponent.getPoke().getSpecies() + " took " + damageTaken + " damage!"); 
+               System.out.println(opponent.getPoke().getSpecies() + " took " 
+                     + damageTaken + " damage!"); 
                break; 
               
             case "3": //Perform special Attack
@@ -218,7 +220,8 @@ public class PokemonGame {
                opponent = attacker.specialAttack(opponent);
                currentHp = opponent.getHp();
                damageTaken = previousHp - currentHp;
-               System.out.println(opponent.getPoke().getSpecies() + " took " + damageTaken + " damage!"); 
+               System.out.println(opponent.getPoke().getSpecies() + " took " 
+                     + damageTaken + " damage!"); 
                break;
             default: //Invalid choice
                inputOk = false; 
