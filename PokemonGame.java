@@ -1,6 +1,5 @@
 import java.util.Random;
 import java.util.Scanner;
-
 /**
 * emulates a pokemon battle between two players through a text based menu.
 * @author Danny Luu, Satoko Yajima, Ula Nicholas, Jakob Oxinio
@@ -16,19 +15,15 @@ public class PokemonGame {
    * @param args not used
    */
    public static void main(String[] args) {
-      //Scanner and Random number generator
-      Scanner userIn = new Scanner(System.in);
-      Random randGen = new Random();
-      
-      String tempString = "";
-      
-      // variables
+
       int i = 0;
       boolean endloop = false;
       String tempName = "";
       Pokemon tempPoke = new Bulbasaur();
       Player playerOne = new Player();
       Player playerTwo = new Player();
+      Scanner userIn = new Scanner(System.in);
+      Random randGen = new Random();
       
       // player 1 object creation
       System.out.println("Player 1 please enter your name.");
@@ -37,6 +32,8 @@ public class PokemonGame {
       System.out.println(tempName + " select your pokemon");
       tempPoke = choosePokemon();    
       Player p1 = new Player(tempName, tempPoke);
+      System.out.println(p1.getName() + ", here is your pokemon.");
+      System.out.println(p1.getPoke());
      
       // player 2 object creation 
       System.out.println("Player 2 please enter your name.");
@@ -45,6 +42,8 @@ public class PokemonGame {
       System.out.println(tempName + " select your Pokemon");
       tempPoke = choosePokemon();
       Player p2 = new Player(tempName, tempPoke);
+      System.out.println(p1.getName() + ", here is your pokemon.");
+      System.out.println(p1.getPoke());
       
       //Randomize the positions of p1 and p2
       i = randGen.nextInt(RANGE);
@@ -53,12 +52,11 @@ public class PokemonGame {
          playerTwo = p2;
         
       } else {
-      
          playerOne = p2;
          playerTwo = p1;
       } 
       
-      // Signal end of game once Player HP 0
+      // Battle Loop
       while (!endloop) {
          System.out.println("====================");
          System.out.println(playerOne.getName() + ", it is your turn!");
@@ -81,9 +79,7 @@ public class PokemonGame {
             System.out.println(playerTwo.getName() + ", You Won!");
             endloop = true;
          }
-      
       } //While loop
-   
    } //Main method
    
    
