@@ -8,7 +8,6 @@ public class tesDriver {
 /**
 * main method.
 * @param args not used
-* @param args not used
 */
 
    public static void main(String []args) {

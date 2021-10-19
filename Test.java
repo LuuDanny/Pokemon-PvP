@@ -56,7 +56,7 @@ public class Test {
    
    } // Closes main method
    
-   public static player BATTLE(player play1 play2) {
+   public static player Battle(player play1 play2) {
        
          What do you want to do?
          1. pass to build energy
@@ -77,6 +77,7 @@ public class Test {
             
         return play
    }
+   
    
    public static player Damage(player play1 play2 int a) {
        

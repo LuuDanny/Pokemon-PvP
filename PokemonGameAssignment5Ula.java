@@ -27,9 +27,6 @@ public class PokemonGameAssignment5Ula {
       Pokemon tempPoke = new Bulbasaur();
       Player playerOne = new Player();
       Player playerTwo = new Player();
-
-      
-      
       
       // player 1 object creation
       System.out.println("Player 1 please enter your name.");
@@ -50,32 +47,36 @@ public class PokemonGameAssignment5Ula {
       //Randomize the positions of p1 and p2
       i = randGen.nextInt(RANGE);
       if(i == 0){
-      
-        playerOne = p1;
-        playerTwo = p2;
+         playerOne = p1;
+         playerTwo = p2;
         
       } else {
       
-        playerOne = p2;
-        playerTwo = p1;
+         playerOne = p2;
+         playerTwo = p1;
       } 
       
       // Signal end of game once Player HP 0
       while(!endloop) {
+         System.out.println("====================");
          System.out.println(playerOne.getName() + ", it is your turn!");
-         playerOne.getStatus();
-         System.out.println(playerTwo.getName() + "ʻs HP: " + playerTwo.getHP());
-         battle(playerOne, p1);
-         if (playerTwo.getHP == 0) {
-            System.out.println(playerOne.getName() + "You Won!");
+         System.out.println(playerOne.status());
+         System.out.println(playerTwo.getName() + "'s HP: " + playerTwo.getHp());
+         battle(playerOne, playerTwo);
+         
+         //Check if playerTwo has fainted
+         if (playerTwo.getHp() == 0) {
+            System.out.println(playerOne.getName() + ", You Won!");
             endloop = true; 
-         } else {
+         } else {//Continue game if still alive
+            System.out.println("====================");
             System.out.println(playerTwo.getName() + ", it is your turn!");
-            playerTwo.getStatus();
-            System.out.println(playerOne.getName() + "ʻs HP: " + playerOne.getHP());
-            battle(playerTwo, p1);
-         } if (playerOne.getHP == 0) {
-            System.out.println(playerTwo.getName() + "You Won!");
+            System.out.println(playerTwo.status());
+            System.out.println(playerOne.getName() + "'s HP: " + playerOne.getHp());
+            battle(playerTwo, playerOne);
+         } 
+         if (playerOne.getHp() == 0) {
+            System.out.println(playerTwo.getName() + ", You Won!");
             endloop = true;
          }
       
@@ -115,40 +116,92 @@ public class PokemonGameAssignment5Ula {
       
          switch (choice) {
             case "1":
-                  poke = new Bulbasaur();
-                  break;
+               poke = new Bulbasaur();
+               break;
             case "2":
-                  poke = new Ivysaur();
-                  break;
+               poke = new Ivysaur();
+               break;
             case "3":
-                  poke = new Venusaur();
-                  break;
+               poke = new Venusaur();
+               break;
             case "4":
-                  poke = new Charmander();
-                  break;
+               poke = new Charmander();
+               break;
             case "5":
-                  poke = new Charmeleon();
-                  break;
+               poke = new Charmeleon();
+               break;
             case "6":
-                  poke = new Charizard();
-                  break;
+               poke = new Charizard();
+               break;
             case "7":
-                  poke = new Squirtle();
-                  break;
+               poke = new Squirtle();
+               break;
             case "8":
-                  poke = new Wartortle();
-                  break;
+               poke = new Wartortle();
+               break;
             case "9":
-                  poke = new Blastoise();
-                  break;
+               poke = new Blastoise();
+               break;
             default:
-                  endLoop = false;
-                  System.out.println("\n****Invalid menu choice.****");
-                  System.out.println("Please enter a number from 1 to 9\n");
-                  break; 
+               endLoop = false;
+               System.out.println("\n****Invalid menu choice.****");
+               System.out.println("Please enter a number from 1 to 9\n");
+               break; 
          } // Closes Switch
       } while (!endLoop);
       return poke;
    } // Closes makePokemon
+   
+   /**
+   * Battle method.
+   * The 
+   * @param p1 Player object 
+   * @param p2 Player object 
+   */
+   // I needed to change Battle method name is battle method
+   public static void  battle(Player p1, Player p2) {
+     
+      Scanner myObj = new Scanner(System.in);  
+      String choice = "";
+      Player attacker = p1;
+      Player opponent = p2;
+      boolean inputOk = true;
+         
+      do {
+         //Reset value back to true
+         inputOk = true; 
+         
+         //Text based menu for battle options
+         System.out.println("What do you want to do?");
+         System.out.println("1. pass to build energy");
+         System.out.println("2. perform fast Attack");
+         //Display special attack option if energy is sufficient
+         if (attacker.getEnergy() >= 3) { 
+            System.out.println("3.perform Special Attack");
+         }
+         choice = myObj.nextLine(); 
+         
+         // Switch based on player's choise
+         switch (choice) {
+            case "1" : //Pass turn
+               attacker.passTurn();
+               System.out.println(attacker.getName() + " Your energy is now "
+                  + attacker.getEnergy());
+               break;
+            case "2": //Perform fastAttack
+               opponent = attacker.fastAttack(opponent); 
+               break; 
+              
+            case "3": //Perform special Attack
+               opponent = attacker.specialAttack(opponent);
+               break;
+            default: //Invalid choice
+               inputOk = false; 
+               System.out.println("You did not print valid number.");
+               System.out.println("Please enter a number from 1 to 3.");
+               break;
+         }
+      } while(!inputOk);
+   }// Closes battle
 
 } //Class

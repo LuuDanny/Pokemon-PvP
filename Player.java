@@ -11,7 +11,7 @@ public class Player {
    /** The Player's Pokemon*/
    private Pokemon poke = new Bulbasaur();
    /** The Player's Energy */
-   private int energy = 3;
+   private int energy = 0;
 
    /**
    * Constructor for Player.
@@ -21,19 +21,28 @@ public class Player {
        this.energy = energy;
        this.poke = newPoke;
    }
+   /**
+   * Constructor with no parameters.
+   */
+   public Player() {
+       this.name = name;
+       this.energy = energy;
+       this.poke = poke;
+   }
+   
    
    public String toString() {
       String s = "";
       s = "Player: " + this.name;
-      s = s + "/nEnergy: " + this.energy;
-      s = s + "/nPokemon: /n" + this.poke;
+      s = s + "\nEnergy: " + this.energy;
+      s = s + "\nPokemon: \n" + this.poke;
       return s;
    }
    
    public String status() {
       String s = "";
-      s = "Your Hp: " + getHp();
-      s = "/nYour attack energy: " + getEnergy();
+      s = s + "Your Hp: " + getHp();
+      s = s + "\nYour attack energy: " + getEnergy();
       return s;
    }
    
