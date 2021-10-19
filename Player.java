@@ -17,7 +17,7 @@ public class Player {
    * Constructor for Player.
    */
    public Player(String newName, Pokemon newPoke) {
-       this.name = newName;
+       this.setName(newName);
        this.energy = energy;
        this.poke = newPoke;
    }
@@ -114,5 +114,15 @@ public class Player {
    public int getHp(){
       return this.poke.getHP();
    }
-
+   
+   //============= setMethod ==================
+   /** 
+   * sets the Player's name.
+   * @param updateName is the Player's updated name
+   */
+   public void setName(String updateName) {
+      updateName = updateName.trim();
+      this.name = updateName;
+   } // Close name setMethod
+   
 }

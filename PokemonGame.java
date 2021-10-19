@@ -26,24 +26,23 @@ public class PokemonGame {
       Random randGen = new Random();
       
       // player 1 object creation
-      System.out.println("Player 1 please enter your name.");
+      System.out.println("Player 1" + " \nPlease enter your name.");
       tempName = userIn.nextLine();
-      tempName = tempName.trim();
-      System.out.println(tempName + " select your pokemon");
+      System.out.println("Please select your pokemon");
       tempPoke = choosePokemon();    
       Player p1 = new Player(tempName, tempPoke);
-      System.out.println(p1.getName() + ", here is your pokemon.");
+      System.out.println("You have chosen " + p1.getPoke().getSpecies() + " as your pokemon.");
       System.out.println(p1.getPoke());
      
-      // player 2 object creation 
-      System.out.println("Player 2 please enter your name.");
+      // player 2 object creation
+      System.out.println("======================================"); 
+      System.out.println("Player 2" + " \nPlease enter your name.");
       tempName = userIn.nextLine();
-      tempName = tempName.trim();
-      System.out.println(tempName + " select your Pokemon");
+      System.out.println("Please select your Pokemon");
       tempPoke = choosePokemon();
       Player p2 = new Player(tempName, tempPoke);
-      System.out.println(p1.getName() + ", here is your pokemon.");
-      System.out.println(p1.getPoke());
+      System.out.println("You have chosen " + p2.getPoke().getSpecies() + " as your pokemon.");
+      System.out.println(p2.getPoke());
       
       //Randomize the positions of p1 and p2
       i = randGen.nextInt(RANGE);
@@ -56,31 +55,43 @@ public class PokemonGame {
          playerTwo = p1;
       } 
       
+      //Assign player's positionn as their name if their name is empty.
+      if (playerOne.getName().equals("")) {
+         playerOne.setName("Player One");
+      }
+      if (playerTwo.getName().equals("")) {
+         playerTwo.setName("Player Two");
+      }
+      
+      System.out.println("\n===============================");
+      System.out.println(playerOne.getName() + " VS " + playerTwo.getName());
+      System.out.println("===============================\n");
+      
       // Battle Loop
-      while (!endloop) {
-         System.out.println("====================");
+      while (!endloop) { 
          System.out.println(playerOne.getName() + ", it is your turn!");
          System.out.println(playerOne.status());
          System.out.println(playerTwo.getName() + "'s HP: " + playerTwo.getHp());
          battle(playerOne, playerTwo);
+         System.out.println("======================================");
          
          //Check if playerTwo has fainted
          if (playerTwo.getHp() == 0) {
             System.out.println(playerOne.getName() + ", You Won!");
             endloop = true; 
          } else { //Continue game if still alive
-            System.out.println("====================");
             System.out.println(playerTwo.getName() + ", it is your turn!");
             System.out.println(playerTwo.status());
             System.out.println(playerOne.getName() + "'s HP: " + playerOne.getHp());
             battle(playerTwo, playerOne);
+            System.out.println("======================================");
          } 
          //Check if playerOne has fainted
          if (playerOne.getHp() == 0) {
             System.out.println(playerTwo.getName() + ", You Won!");
             endloop = true;
          }
-      } //While loop
+      } //Close Battle loop
    } //Main method
    
    
@@ -97,6 +108,9 @@ public class PokemonGame {
       String choice = new String("");
       boolean endLoop = true;
       do {
+         //Reset value back to true
+         endLoop = true;
+      
          //Text based menu for Pokemon options
          System.out.println("Please enter a number to choose your Pokemon:");
          System.out.println("\t1 for Bulbasaur");
@@ -143,8 +157,9 @@ public class PokemonGame {
                break;
             default:
                endLoop = false;
-               System.out.println("\n****Invalid menu choice.****");
-               System.out.println("Please enter a number from 1 to 9\n");
+               System.out.println("\n=======Invalid Menu Choice=======");
+               System.out.println("Please enter a number from 1 to 9");
+               System.out.println("=================================\n");
                break; 
          } // Closes Switch
       } while (!endLoop);
@@ -170,12 +185,12 @@ public class PokemonGame {
          inputOk = true; 
          
          //Text based menu for battle options
-         System.out.println("What do you want to do?");
-         System.out.println("1. pass to build energy");
-         System.out.println("2. perform fast Attack");
+         System.out.println("\nWhat do you want to do?");
+         System.out.println("1. Pass to build energy");
+         System.out.println("2. Perform fast Attack");
          //Display special attack option if energy is sufficient
          if (attacker.getEnergy() >= 3) { 
-            System.out.println("3.perform Special Attack");
+            System.out.println("3. Perform Special Attack");
          }
          choice = myObj.nextLine(); 
          choice = choice.trim();
@@ -196,8 +211,9 @@ public class PokemonGame {
                break;
             default: //Invalid choice
                inputOk = false; 
-               System.out.println("You did not print valid number.");
-               System.out.println("Please enter a number from 1 to 3.");
+               System.out.println("\n=======Invalid Menu Choice=======");
+               System.out.println("Please enter a number from 1 to 3");
+               System.out.println("=================================\n");
                break;
          }
       } while(!inputOk);
