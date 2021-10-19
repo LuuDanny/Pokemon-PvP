@@ -65,7 +65,7 @@ public class PokemonGame {
       
       System.out.println("\n===============================");
       System.out.println(playerOne.getName() + " VS " + playerTwo.getName());
-      System.out.println("===============================\n");
+      System.out.println("===============================");
       
       // Battle Loop
       while (!endloop) { 
@@ -174,11 +174,14 @@ public class PokemonGame {
    // I needed to change Battle method name is battle method
    public static void  battle(Player p1, Player p2) {
      
-      Scanner myObj = new Scanner(System.in);  
+      int previousHp = 0;
+      int currentHp = 0;
+      int damageTaken = 0;
+      boolean inputOk = true;
       String choice = "";
       Player attacker = p1;
       Player opponent = p2;
-      boolean inputOk = true;
+      Scanner myObj = new Scanner(System.in); 
          
       do {
          //Reset value back to true
@@ -203,11 +206,19 @@ public class PokemonGame {
                      + attacker.getEnergy());
                break;
             case "2": //Perform fastAttack
-               opponent = attacker.fastAttack(opponent); 
+               previousHp = opponent.getHp();
+               opponent = attacker.fastAttack(opponent);
+               currentHp = opponent.getHp();
+               damageTaken = previousHp - currentHp;
+               System.out.println(opponent.getPoke().getSpecies() + " took " + damageTaken + " damage!"); 
                break; 
               
             case "3": //Perform special Attack
+               previousHp = opponent.getHp();
                opponent = attacker.specialAttack(opponent);
+               currentHp = opponent.getHp();
+               damageTaken = previousHp - currentHp;
+               System.out.println(opponent.getPoke().getSpecies() + " took " + damageTaken + " damage!"); 
                break;
             default: //Invalid choice
                inputOk = false; 
