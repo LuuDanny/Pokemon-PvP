@@ -8,11 +8,11 @@ import java.util.Scanner;
 */
 public class PokemonGame {
    
-   /** int range for player randomizer */ 
+   /** int range for player randomizer. */ 
    static final int RANGE = 2; 
    
    /**
-   * Main method
+   * Main method.
    * @param args not used
    */
    public static void main(String[] args) {
@@ -48,7 +48,7 @@ public class PokemonGame {
       
       //Randomize the positions of p1 and p2
       i = randGen.nextInt(RANGE);
-      if(i == 0){
+      if (i == 0) {
          playerOne = p1;
          playerTwo = p2;
         
@@ -59,7 +59,7 @@ public class PokemonGame {
       } 
       
       // Signal end of game once Player HP 0
-      while(!endloop) {
+      while (!endloop) {
          System.out.println("====================");
          System.out.println(playerOne.getName() + ", it is your turn!");
          System.out.println(playerOne.status());
@@ -70,7 +70,7 @@ public class PokemonGame {
          if (playerTwo.getHp() == 0) {
             System.out.println(playerOne.getName() + ", You Won!");
             endloop = true; 
-         } else {//Continue game if still alive
+         } else { //Continue game if still alive
             System.out.println("====================");
             System.out.println(playerTwo.getName() + ", it is your turn!");
             System.out.println(playerTwo.status());
@@ -87,7 +87,7 @@ public class PokemonGame {
    } //Main method
    
    
-   /*
+
    //============= choosePokemon ==================
    /**
    * Creates a pokemon object from a selection of 9.
@@ -100,7 +100,7 @@ public class PokemonGame {
       String choice = new String("");
       boolean endLoop = true;
       do {
-         // menu text
+         //Text based menu for Pokemon options
          System.out.println("Please enter a number to choose your Pokemon:");
          System.out.println("\t1 for Bulbasaur");
          System.out.println("\t2 for Ivysaur");
@@ -112,10 +112,10 @@ public class PokemonGame {
          System.out.println("\t8 for Wartortle");
          System.out.println("\t9 for Blastoise");
          
-         //Reads user's choice
          choice = userIn.nextLine();
          choice = choice.trim();
-      
+         
+         // Switch based on player's choise
          switch (choice) {
             case "1":
                poke = new Bulbasaur();
@@ -152,13 +152,12 @@ public class PokemonGame {
          } // Closes Switch
       } while (!endLoop);
       return poke;
-   } // Closes makePokemon
+   } // Closes makePokemon method
    
    /**
-   * Battle method.
-   * The 
-   * @param p1 Player object 
-   * @param p2 Player object 
+   * Emulates a pokemon battle between two players.
+   * @param p1 The attacking Player
+   * @param p2 The defending Player
    */
    // I needed to change Battle method name is battle method
    public static void  battle(Player p1, Player p2) {
@@ -182,13 +181,14 @@ public class PokemonGame {
             System.out.println("3.perform Special Attack");
          }
          choice = myObj.nextLine(); 
+         choice = choice.trim();
          
          // Switch based on player's choise
          switch (choice) {
             case "1" : //Pass turn
                attacker.passTurn();
                System.out.println(attacker.getName() + " Your energy is now "
-                  + attacker.getEnergy());
+                     + attacker.getEnergy());
                break;
             case "2": //Perform fastAttack
                opponent = attacker.fastAttack(opponent); 
@@ -204,6 +204,5 @@ public class PokemonGame {
                break;
          }
       } while(!inputOk);
-   }// Closes battle
-
-} //Class
+   } // Closes battle method
+} //Closes Class
