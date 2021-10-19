@@ -75,6 +75,7 @@ public class PokemonGame {
             System.out.println(playerOne.getName() + "'s HP: " + playerOne.getHp());
             battle(playerTwo, playerOne);
          } 
+         //Check if playerOne has fainted
          if (playerOne.getHp() == 0) {
             System.out.println(playerTwo.getName() + ", You Won!");
             endloop = true;
