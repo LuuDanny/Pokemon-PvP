@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 /**
-* emulates a pokemon battle between two players through a text based menu.
+* Emulates a pokemon battle between two players through a text based menu.
 * @author Danny Luu, Satoko Yajima, Ula Nicholas, Jakob Oxinio
 * @since 10/19/2021
 */
