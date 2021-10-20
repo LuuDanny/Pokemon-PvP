@@ -18,12 +18,15 @@ public class PokemonGame {
    
       int i = 0;
       boolean endloop = false;
+      boolean reChoose = true;
       String tempName = "";
+      String yesNo = "";
       Pokemon tempPoke = new Bulbasaur();
       Player playerOne = new Player();
       Player playerTwo = new Player();
       Scanner userIn = new Scanner(System.in);
       Random randGen = new Random();
+      
       
       // player 1 object creation
       System.out.println("Player 1" + " \nPlease enter your name.");
@@ -31,8 +34,13 @@ public class PokemonGame {
       System.out.println("Please select your pokemon");
       tempPoke = choosePokemon();    
       Player p1 = new Player(tempName, tempPoke);
-      System.out.println("You have chosen " + p1.getPoke().getSpecies() + " as your pokemon.");
+      System.out.println("You have chosen " + p1.getPoke().getSpecies() 
+            + " as your pokemon.");
       System.out.println(p1.getPoke());
+      tempPoke = reChoose(tempPoke);
+      p1.setPoke(tempPoke);     
+     
+     
      
       // player 2 object creation
       System.out.println("======================================"); 
@@ -41,8 +49,12 @@ public class PokemonGame {
       System.out.println("Please select your Pokemon");
       tempPoke = choosePokemon();
       Player p2 = new Player(tempName, tempPoke);
-      System.out.println("You have chosen " + p2.getPoke().getSpecies() + " as your pokemon.");
+      System.out.println("You have chosen " + p2.getPoke().getSpecies() 
+            + " as your pokemon.");
       System.out.println(p2.getPoke());
+      tempPoke = reChoose(tempPoke);
+      p2.setPoke(tempPoke);     
+
       
       //Randomize the positions of p1 and p2
       i = randGen.nextInt(RANGE);
@@ -64,15 +76,18 @@ public class PokemonGame {
       }
       
       System.out.println("\n===============================");
-      System.out.println(playerOne.getName() + "(" + playerOne.getPoke().getSpecies() + ")"
-            + " VS " + playerTwo.getName() + "(" + playerTwo.getPoke().getSpecies() + ")");
+      System.out.println(playerOne.getName() + "(" 
+            + playerOne.getPoke().getSpecies() + ")"
+            + " VS " + playerTwo.getName() + "(" 
+            + playerTwo.getPoke().getSpecies() + ")");
       System.out.println("===============================");
       
       // Battle Loop
       while (!endloop) { 
          System.out.println(playerOne.getName() + ", it is your turn!");
          System.out.println(playerOne.status());
-         System.out.println(playerTwo.getName() + "'s HP: " + playerTwo.getHp());
+         System.out.println(playerTwo.getName() + "'s HP: " 
+               + playerTwo.getHp());
          battle(playerOne, playerTwo);
          System.out.println("======================================");
          
@@ -83,7 +98,8 @@ public class PokemonGame {
          } else { //Continue game if still alive
             System.out.println(playerTwo.getName() + ", it is your turn!");
             System.out.println(playerTwo.status());
-            System.out.println(playerOne.getName() + "'s HP: " + playerOne.getHp());
+            System.out.println(playerOne.getName() + "'s HP: " 
+                  + playerOne.getHp());
             battle(playerTwo, playerOne);
             System.out.println("======================================");
          } 
@@ -166,6 +182,51 @@ public class PokemonGame {
       } while (!endLoop);
       return poke;
    } // Closes makePokemon method
+   
+   /**
+   * Reselection of Pokemon.
+   * @param p Original Pokemon
+   * @return a Pokemon object
+   */   
+   public static Pokemon reChoose(Pokemon p) {
+      Scanner userIn = new Scanner(System.in);
+      Pokemon poke = p;
+      boolean reChoose = true;
+      String yesNo = "";
+      while (reChoose) {
+         System.out.println("Would you like to reroll your pokemon? Y/N");
+         yesNo = userIn.nextLine();
+         yesNo = yesNo.trim();
+         yesNo = yesNo.toUpperCase();
+         switch (yesNo) {
+            case "Y": 
+               poke = choosePokemon(); 
+               System.out.println(poke);
+                               
+               break;
+            case "N":
+               reChoose = false;
+               break;
+         
+            default:
+               System.out.println("\n=======Invalid Menu Choice=======");
+               System.out.println("Please enter Y/N");
+               System.out.println("=================================\n");
+               break;
+               
+           
+         }
+      
+      
+      }
+   
+      return poke;
+   }  
+   
+   
+   
+   
+   
    
    /**
    * Emulates a pokemon battle between two players.

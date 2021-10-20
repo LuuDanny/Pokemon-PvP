@@ -135,4 +135,13 @@ public class Player {
       this.name = updateName;
    } // Close name setMethod
    
+   /** 
+   * sets the Player's Pokemon.
+   * @param updatePoke is the Player's updated Pokemon
+   */
+   public void setPoke(Pokemon updatePoke) {
+      this.poke = updatePoke;
+   } // Close name setMethod
+   
+
 }
