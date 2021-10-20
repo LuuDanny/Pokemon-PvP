@@ -230,6 +230,6 @@ public class PokemonGame {
                System.out.println("=================================\n");
                break;
          }
-      } while(!inputOk);
+      } while (!inputOk);
    } // Closes battle method
 } //Closes Class
