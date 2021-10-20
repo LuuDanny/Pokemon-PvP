@@ -6,17 +6,17 @@
 public class Player {
    
    //============= Instance Variables ==================
-   /** The Player's Name. */
+   /** The Player's Name.*/
    private String name = "";
    /** The Player's Pokemon.*/
    private Pokemon poke = new Bulbasaur();
-   /** The Player's Energy. */
+   /** The Player's Energy.*/
    private int energy = 0;
 
    /**
    * Constructor for Player.
-   * @param newName The new name
-   * @param newPoke The Pokemon
+   * @param newName The player's name
+   * @param newPoke The player's pokemon
    */
    public Player(String newName, Pokemon newPoke) {
       this.setName(newName);
@@ -25,7 +25,7 @@ public class Player {
    }
    
    /**
-   * Constructor with no parameters.
+   * Constructor for Player with no parameters.
    */
    public Player() {
       this.name = name;
@@ -34,8 +34,8 @@ public class Player {
    }
    
    /**
-   * Returns Pokemon information as a formatted String.
-   * @return String representing Pokemon object data.
+   * Returns Player's information as a formatted String.
+   * @return String representing Player object data.
    */
    public String toString() {
       String s = "";
@@ -46,8 +46,8 @@ public class Player {
    }
    
    /**
-   * Returns Pokemon information as a formatted String.
-   * @return String representing Player status.
+   * Returns Player's status as a formatted String.
+   * @return String representing Player's Hp and energy.
    */
    public String status() {
       String s = "";
@@ -58,8 +58,8 @@ public class Player {
    
    /**
    * The player performs a fast attack on opponent.
-   * @param opponent player
-   * @return Player The opponent player with their updated hp
+   * @param opponent the defending player
+   * @return Player The opponent player with their updated data
    */
    public Player fastAttack(Player opponent) {
       String s = "";
@@ -72,8 +72,8 @@ public class Player {
    
    /**
    * The player performs a special attack on opponent.
-   * @param opponent player
-   * @return Player The opponent player with their updated hp
+   * @param opponent the defending player
+   * @return Player The opponent player with their updated data
    */
    public Player specialAttack(Player opponent) {
       String s = "";

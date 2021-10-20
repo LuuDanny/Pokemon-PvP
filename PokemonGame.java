@@ -15,7 +15,7 @@ public class PokemonGame {
    * @param args not used
    */
    public static void main(String[] args) {
-
+   
       int i = 0;
       boolean endloop = false;
       String tempName = "";
@@ -216,12 +216,18 @@ public class PokemonGame {
                break; 
               
             case "3": //Perform special Attack
-               previousHp = opponent.getHp();
-               opponent = attacker.specialAttack(opponent);
-               currentHp = opponent.getHp();
-               damageTaken = previousHp - currentHp;
-               System.out.println(opponent.getPoke().getSpecies() + " took " 
-                     + damageTaken + " damage!"); 
+               if (attacker.getEnergy() >= 3) { 
+                  previousHp = opponent.getHp();
+                  opponent = attacker.specialAttack(opponent);
+                  currentHp = opponent.getHp();
+                  damageTaken = previousHp - currentHp;
+                  System.out.println(opponent.getPoke().getSpecies() + " took " 
+                        + damageTaken + " damage!");
+               } else {
+                  System.out.println(attacker.getPoke().getSpecies() 
+                        + " failed to use it's special attack!");
+                  System.out.println("Not enough energy!");
+               }
                break;
             default: //Invalid choice
                inputOk = false; 
