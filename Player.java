@@ -1,6 +1,6 @@
 /**
 * Player object class.
-* @author Danny Luu
+* @author Danny Luu, Satoko Yajima, Ula Nicholas, Jakob Oxinio
 * @since 10/17/2021
 */
 public class Player {

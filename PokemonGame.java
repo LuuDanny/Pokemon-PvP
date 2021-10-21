@@ -132,6 +132,10 @@ public class PokemonGame {
          System.out.println("\t7 for Squirtle");
          System.out.println("\t8 for Wartortle");
          System.out.println("\t9 for Blastoise");
+         System.out.println("\t10 for Eevee");
+         System.out.println("\t11 for Vaporeon");
+         System.out.println("\t12 for Jolteon");
+         System.out.println("\t13 for Flareon");
          
          choice = userIn.nextLine();
          choice = choice.trim();
@@ -165,10 +169,22 @@ public class PokemonGame {
             case "9":
                poke = new Blastoise();
                break;
+            case "10":
+               poke = new Eevee();
+               break;
+            case "11":
+               poke = new Vaporeon();
+               break;   
+            case "12":
+               poke = new Jolteon();
+               break;
+            case "13":
+               poke = new Flareon();
+               break;
             default:
                inputOk = false;
                System.out.println("\n=======Invalid Menu Choice=======");
-               System.out.println("Please enter a number from 1 to 9");
+               System.out.println("Please enter a number from 1 to 13");
                System.out.println("=================================\n");
                break; 
          } // Closes Switch
@@ -224,6 +240,7 @@ public class PokemonGame {
    // I needed to change Battle method name is battle method
    public static void  battle(Player p1, Player p2) {
      
+      int delay = 1000;
       int previousHp = 0;
       int currentHp = 0;
       int damageTaken = 0;
@@ -251,38 +268,68 @@ public class PokemonGame {
          // Switch based on player's choise
          switch (choice) {
             case "1" : //Pass turn
-               attacker.passTurn();
-               System.out.println(attacker.getName() + " Your energy is now "
-                     + attacker.getEnergy());
+               try {
+                  Thread.sleep(delay);
+                  attacker.passTurn();
+                  System.out.println(attacker.getName() + " Your energy is now "
+                        + attacker.getEnergy());
+                  Thread.sleep(delay);
+               } catch (InterruptedException ex) {
+                  System.exit(0);
+               } 
                break;
             case "2": //Perform fastAttack
-               previousHp = opponent.getHp();
-               opponent = attacker.fastAttack(opponent);
-               currentHp = opponent.getHp();
-               damageTaken = previousHp - currentHp;
-               System.out.println(opponent.getPoke().getSpecies() + " took " 
-                     + damageTaken + " damage!"); 
-               break; 
-              
-            case "3": //Perform special Attack
-               if (attacker.getEnergy() >= 3) { 
+               try {
+                  Thread.sleep(delay);
                   previousHp = opponent.getHp();
-                  opponent = attacker.specialAttack(opponent);
+                  opponent = attacker.fastAttack(opponent);
                   currentHp = opponent.getHp();
                   damageTaken = previousHp - currentHp;
                   System.out.println(opponent.getPoke().getSpecies() + " took " 
                         + damageTaken + " damage!");
+                  Thread.sleep(delay);
+               } catch (InterruptedException ex) {
+                  System.exit(0);
+               } 
+               break; 
+              
+            case "3": //Perform special Attack
+               if (attacker.getEnergy() >= 3) { 
+                  try {
+                     Thread.sleep(delay);
+                     previousHp = opponent.getHp();
+                     opponent = attacker.specialAttack(opponent);
+                     currentHp = opponent.getHp();
+                     damageTaken = previousHp - currentHp;
+                     System.out.println(opponent.getPoke().getSpecies() + " took " 
+                           + damageTaken + " damage!");
+                     Thread.sleep(delay);
+                  } catch (InterruptedException ex) {
+                     System.exit(0);
+                  }
                } else {
-                  System.out.println("Not enough energy!");
-                  System.out.println(attacker.getPoke().getSpecies() 
-                        + " failed to use it's special attack!");
+                  try {
+                     Thread.sleep(delay);
+                     System.out.println("Not enough energy!");
+                     System.out.println(attacker.getPoke().getSpecies() 
+                           + " failed to use it's special attack!");
+                     Thread.sleep(delay);
+                  } catch (InterruptedException ex) {
+                     System.exit(0);
+                  }
                }
                break;
             default: //Invalid choice
-               inputOk = false; 
-               System.out.println("\n=======Invalid Menu Choice=======");
-               System.out.println("Please enter a number from 1 to 3");
-               System.out.println("=================================\n");
+               try {
+                  Thread.sleep(delay);
+                  inputOk = false; 
+                  System.out.println("\n=======Invalid Menu Choice=======");
+                  System.out.println("Please enter a number from 1 to 3");
+                  System.out.println("=================================\n");
+                  Thread.sleep(delay);
+               } catch (InterruptedException ex) {
+                  System.exit(0);
+               } 
                break;
          }
       } while (!inputOk);
